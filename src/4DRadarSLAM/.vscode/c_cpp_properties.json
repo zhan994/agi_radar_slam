@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/zhan/Workspace/github/agi_radar_slam/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/zhan/Workspace/github/agi_radar_slam/src/4DRadarSLAM/fast_apdgicp/include/**",
+        "/home/zhan/Workspace/github/agi_radar_slam/src/4DRadarSLAM/ndt_omp/include/**",
+        "/home/zhan/Workspace/github/agi_radar_slam/src/4DRadarSLAM/4DRadarSLAM/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

@@ -1,0 +1,5 @@
+<launch>
+
+  <node pkg="barometer_bmp388" type="barometer.py" name="barometer_node" output="screen"></node>
+
+</launch>
