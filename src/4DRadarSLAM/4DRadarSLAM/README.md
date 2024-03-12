@@ -78,6 +78,9 @@ Point uncertainty parameters:
   All the configurable parameters are available in the launch file. Many are similar to the project ***hdl_graph_slam***.
 
 ## 4. Run the package
+<div align="center">
+    <img src="doc/NTU4DRadLM_Device.png" width = 80% >
+</div>
 Download [our recorded rosbag](https://drive.google.com/drive/folders/14jVa_dzmckVMDdfELmY32fJlKrZG1Afv?usp=sharing)  (**More datasets**: [NTU4DRadLM](https://github.com/junzhang2016/NTU4DRadLM)) and, then
 ```
 roslaunch radar_graph_slam radar_graph_slam.launch

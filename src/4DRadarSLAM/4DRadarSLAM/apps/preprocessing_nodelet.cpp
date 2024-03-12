@@ -250,11 +250,17 @@ class PreprocessingNodelet : public nodelet::Nodelet, public ParamServer {
     publish_tf = private_nh.param<bool>("publish_tf", false);
   }
 
+  /**
+   * \brief // api: IMU回调函数
+   * 
+   * \param imu_msg 消息
+   */
   void imu_callback(const sensor_msgs::ImuConstPtr& imu_msg) {
     sensor_msgs::Imu imu_data;
     imu_data.header.stamp = imu_msg->header.stamp;
     imu_data.header.seq = imu_msg->header.seq;
     imu_data.header.frame_id = "imu_frame";
+    // step: 1 姿态角转为
     Eigen::Quaterniond q_ahrs(imu_msg->orientation.w, imu_msg->orientation.x,
                               imu_msg->orientation.y, imu_msg->orientation.z);
     Eigen::Quaterniond q_r =
@@ -277,6 +283,7 @@ class PreprocessingNodelet : public nodelet::Nodelet, public ParamServer {
     imu_data.linear_acceleration.y = -imu_msg->linear_acceleration.y;
     imu_data.linear_acceleration.z = -imu_msg->linear_acceleration.z;
     imu_pub.publish(imu_data);
+    
     // imu_queue.push_back(imu_msg);
     double time_now = imu_msg->header.stamp.toSec();
     bool updated = false;
@@ -385,7 +392,6 @@ class PreprocessingNodelet : public nodelet::Nodelet, public ParamServer {
       twist.twist.twist.linear.x = v_r.x();
       twist.twist.twist.linear.y = v_r.y();
       twist.twist.twist.linear.z = v_r.z();
-
       twist.twist.covariance.at(0) = std::pow(sigma_v_r.x(), 2);
       twist.twist.covariance.at(7) = std::pow(sigma_v_r.y(), 2);
       twist.twist.covariance.at(14) = std::pow(sigma_v_r.z(), 2);
@@ -522,6 +528,12 @@ class PreprocessingNodelet : public nodelet::Nodelet, public ParamServer {
     return filtered;
   }
 
+  /**
+   * \brief // api: 距离范围过滤
+   *
+   * \param cloud 输入
+   * \return pcl::PointCloud<PointT>::ConstPtr 输出
+   */
   pcl::PointCloud<PointT>::ConstPtr distance_filter(
       const pcl::PointCloud<PointT>::ConstPtr& cloud) const {
     pcl::PointCloud<PointT>::Ptr filtered(new pcl::PointCloud<PointT>());
@@ -552,6 +564,12 @@ class PreprocessingNodelet : public nodelet::Nodelet, public ParamServer {
     return filtered;
   }
 
+  /**
+   * \brief // api: 点云去畸变
+   *
+   * \param cloud 输入
+   * \return pcl::PointCloud<PointT>::ConstPtr 输出
+   */
   pcl::PointCloud<PointT>::ConstPtr deskewing(
       const pcl::PointCloud<PointT>::ConstPtr& cloud) {
     ros::Time stamp = pcl_conversions::fromPCL(cloud->header.stamp);

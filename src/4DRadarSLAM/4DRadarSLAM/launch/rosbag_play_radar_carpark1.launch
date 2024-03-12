@@ -5,7 +5,7 @@
 <!-- <param name="/use_sim_time" value="true"/> -->
 
 <!-- paths to the rosbag files -->
-<arg name="path" default="/home/zhan/Downloads/data/ntu_radar/"/>
+<arg name="path" default="/home/zhan/Downloads/data/NTU4DRadLM/cp/"/>
 
 <arg name = "file_0" default = "cp_2022-02-26.bag"/>
 <!-- <arg name = "file_1" default = "carpark_400/carpark1_2023-02-01.bag"/>

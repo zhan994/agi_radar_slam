@@ -61,7 +61,7 @@
     <!-- Ego Velocity Estimation -->
     <param name="enable_dynamic_object_removal" value="$(arg enable_dynamic_object_removal)" />
     <!-- ground truth publication -->
-    <param name="gt_file_location" value="/home/zhan/Downloads/data/ntu_radar/gt_odom.txt" />
+    <param name="gt_file_location" value="/home/zhan/Downloads/data/NTU4DRadLM/cp/gt_odom.txt" />
   </node>
 
 
